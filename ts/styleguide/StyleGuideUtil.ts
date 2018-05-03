@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { padStart, sample } from 'lodash';
+import libphonenumber from 'google-libphonenumber';
 
 import _ from 'lodash';
 import moment from 'moment';
@@ -17,6 +18,7 @@ export { BackboneWrapper } from '../components/utility/BackboneWrapper';
 // Here we can make things inside Webpack available to Backbone views like preload.js.
 
 import { Quote } from '../components/conversation/Quote';
+import { EmbeddedContact } from '../components/conversation/EmbeddedContact';
 import * as HTML from '../html';
 
 import * as MIME from '../../ts/types/MIME';
@@ -127,6 +129,7 @@ parent.Signal.HTML = HTML;
 parent.Signal.Types.MIME = MIME;
 parent.Signal.Components = {
   Quote,
+  EmbeddedContact,
 };
 parent.Signal.Util = Util;
 parent.filesize = filesize;
@@ -190,6 +193,20 @@ group.contactCollection.add(CONTACTS[2]);
 export { COLORS, CONTACTS, me, group };
 
 parent.textsecure.storage.user.getNumber = () => ourNumber;
+parent.textsecure.messaging = {
+  getProfile: async (number: string): Promise<Boolean> => {
+    if (parent.ConversationController.get(number)) {
+      return true;
+    }
+
+    throw new Error('User does not have Signal account');
+  },
+};
+
+parent.libphonenumber = libphonenumber.PhoneNumberUtil.getInstance();
+parent.libphonenumber.PhoneNumberFormat = libphonenumber.PhoneNumberFormat;
+
+parent.storage.put('regionCode', 'US');
 
 // Telling Lodash to relinquish _ for use by underscore
 // @ts-ignore
