@@ -12,8 +12,8 @@ import { missingCaseError } from '../../util/missingCaseError';
 
 import {
   renderAvatar,
-  renderName,
   renderContactShorthand,
+  renderName,
   renderSendMessage,
 } from './EmbeddedContact';
 
