@@ -132,9 +132,9 @@ window.Signal = Signal.setup({
 });
 
 // Pulling these in separately since they access filesystem, electron
-Signal.Backup = require('./js/modules/backup');
-Signal.Debug = require('./js/modules/debug');
-Signal.Logs = require('./js/modules/logs');
+window.Signal.Backup = require('./js/modules/backup');
+window.Signal.Debug = require('./js/modules/debug');
+window.Signal.Logs = require('./js/modules/logs');
 
 // We pull this in last, because the native module involved appears to be sensitive to
 //   /tmp mounted as noexec on Linux.
@@ -148,7 +148,7 @@ if (window.config.environment === 'test') {
     tmp: require('tmp'),
     path: require('path'),
     basePath: __dirname,
-    attachmentsPath: Signal.Migrations.attachmentsPath,
+    attachmentsPath: window.Signal.Migrations.attachmentsPath,
   };
   /* eslint-enable global-require, import/no-extraneous-dependencies */
 }
