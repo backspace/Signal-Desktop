@@ -10,6 +10,7 @@ libtextsecure/components.js
 libtextsecure/test/test.js
 test/test.js
 ts/**/*.js
+stylesheets/manifest.css
 
 # Third-party files
 components/**
@@ -32,3 +33,4 @@ _locales/**
 
 # Symlink into third-party `components`:
 stylesheets/_intlTelInput.scss
+
