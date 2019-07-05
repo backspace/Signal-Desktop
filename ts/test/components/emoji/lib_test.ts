@@ -5,7 +5,7 @@ import {
 } from '../../../components/emoji/lib';
 
 describe('replaceColons', () => {
-  it('replaces known downcased-emoji between colons', () => {
+  it('replaces known lowercase-converted emoji between colons', () => {
     const noEmoji = replaceColons('hello');
     assert.equal(noEmoji, 'hello');
 
