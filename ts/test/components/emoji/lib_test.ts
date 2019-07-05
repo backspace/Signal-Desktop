@@ -12,6 +12,9 @@ describe('replaceColons', () => {
     const anEmojiWithCaps = replaceColons('hello :Grinning:');
     assert.equal(anEmojiWithCaps, 'hello 😀');
 
+    const anUnknownEmoji = replaceColons(':unknown: :Unknown:');
+    assert.equal(anUnknownEmoji, ':unknown: :Unknown:');
+
     const skinToneModifierEmoji = replaceColons('hello :wave::skin-tone-5:!');
     assert.equal(skinToneModifierEmoji, 'hello 👋🏿!');
   });
